@@ -4,7 +4,7 @@ SUBDIRS = \
 	3-mechanical-electrical-analogies \
 	4-increasing-magnetic-flux \
 	5-increasing-electromagnet-force \
-	6-inductor-properties
+	a-inductor-properties
 
 .PHONY : $(SUBDIRS) recurse
 
