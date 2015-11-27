@@ -12,7 +12,8 @@
 \usepackage{datetime}
 \usepackage{gensymb}
 \usepackage{siunitx}
-%\usepackage{hyperref}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
 \usepackage{lscape}
 \usepackage[backend=bibtex]{biblatex}
 \bibliography{../common/elementary-physics.bib}
