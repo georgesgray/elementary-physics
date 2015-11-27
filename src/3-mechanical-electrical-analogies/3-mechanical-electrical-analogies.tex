@@ -18,22 +18,26 @@ Although any linear system that fits the template can be analysed and compared t
 
 In school we are presented formulas for energy such as:
 
+\begin{subequations}
 \begin{align}
 E &= \frac{m v^2}{2} \tag{kinetic energy} \\
 E &= \frac{k x^2}{2} \tag{spring energy} \\
 E &= \frac{L I^2}{2} \tag{inductor energy} \\
 E &= \frac{C V^2}{2} \tag{capacitor energy}
 \end{align}
+\end{subequations}
 
 It is hard not to recognize a pattern.
 We are also presented formulas such as:
 
+\begin{subequations}
 \begin{align}
 p &= m v \tag{momentum} \\
 F &= k x \tag{spring force} \\
 \Lambda &= L I \tag{inductance} \\
 Q &= C V \tag{capacitance}
 \end{align}
+\end{subequations}
 
 where $\Lambda = \Phi N$.
 Surely there must be a way to standardize this? 
@@ -64,6 +68,7 @@ a y'' + b y' + c y = 0
 
 then we can say:
 
+\begin{subequations}
 \begin{align}
 y &= \int v \, \mathrm{d}t \\
 y' &= v \\
@@ -82,6 +87,7 @@ z' &= c \frac{\mathrm{d}y}{\mathrm{d}t} \\
 z &= c y \\
 E_c &= \frac{c y^2}{2} \tag{energy} 
 \end{align}
+\end{subequations}
 
 Any system that fits the template also has an inverse system.
 If the variables are $a,b,c,v,x,y,z$ then the inverse system will have the variables $c^{-1},b^{-1},a^{-1},z,y,x,v$.
@@ -97,6 +103,7 @@ The sum of the voltages equals zero as in Kirchhoff's second law.
 The variables $L,R,C^{-1},I,\Lambda,Q,V$ are used.
 $\Lambda = \Phi N$ and is referred to as magnetic flux linkage.
 
+\begin{subequations}
 \begin{align}
 L Q'' + R Q' + \frac{Q}{C} &= 0 \\
 Q &= \int I \, \mathrm{d}t \\
@@ -116,6 +123,7 @@ V' &= \frac{1}{C} \frac{\mathrm{d}Q}{\mathrm{d}t} \\
 V &= \frac{Q}{C} \\
 E_C &= \frac{Q^2}{2 C} \tag{energy} 
 \end{align}
+\end{subequations}
 
 \pagebreak
 
@@ -126,6 +134,7 @@ All components have the same velocity, each term is the force for the correspond
 The sum of the forces equals zero as in Newton's 3rd Law.
 The variables $m,b,k,v,p,x,F$ are used.
 
+\begin{subequations}
 \begin{align}
 m x'' + b x' + k x &= 0 \\
 x &= \int v \, \mathrm{d}t \\
@@ -145,6 +154,7 @@ F' &= k \frac{\mathrm{d}x}{\mathrm{d}t} \\
 F &= k x \tag{Hooke's law} \\
 E_k &= \frac{k x^2}{2} \tag{energy in a spring} 
 \end{align}
+\end{subequations}
 
 \pagebreak
 
@@ -156,6 +166,7 @@ The sum of the currents equals zero as in Kirchhoff's first law.
 The variables $C,R^{-1},L^{-1},V,Q,\Lambda,I$ are used.
 $\Lambda = \Phi N$ and is referred to as magnetic flux linkage.
 
+\begin{subequations}
 \begin{align}
 C \Lambda'' + \frac{\Lambda'}{R} + \frac{\Lambda}{L} &= 0 \\
 \Lambda &= \int V \, \mathrm{d}t \\
@@ -175,6 +186,7 @@ I' &= \frac{1}{L} \frac{\mathrm{d}\Lambda}{\mathrm{d}t} \\
 I &= \frac{\Lambda}{L} \\
 E_L &= \frac{\Lambda^2}{2 L} \tag{energy} 
 \end{align}
+\end{subequations}
 
 \pagebreak
 
@@ -185,6 +197,7 @@ All components have the same force, each term is the velocity for the correspond
 The sum of the velocities equals zero as in common sense.
 The variables $k^{-1},b^{-1},m^{-1},F,x,p,v$ are used.
 
+\begin{subequations}
 \begin{align}
 \frac{p''}{k} + \frac{p'}{b} + \frac{p}{m} &= 0 \\
 p &= \int F \, \mathrm{d}t \tag{definition of impulse} \\
@@ -204,6 +217,7 @@ v' &= \frac{1}{m} \frac{\mathrm{d}p}{\mathrm{d}t} \\
 v &= \frac{p}{m} \\
 E_m &= \frac{p^2}{2 m} \tag{energy} 
 \end{align}
+\end{subequations}
 
 \pagebreak
 

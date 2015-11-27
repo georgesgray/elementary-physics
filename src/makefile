@@ -10,12 +10,12 @@ SUBDIRS = \
 
 all: TARGET=all
 edit: TARGET=edit
-papers: TARGET=paper
+pdf: TARGET=pdf
 read: TARGET=read
 clean: TARGET=clean
 tidy: TARGET=tidy
 
-recurse all edit papers read clean tidy : $(SUBDIRS)
+recurse all edit pdf read clean tidy : $(SUBDIRS)
 
 $(SUBDIRS):
 	@exec $(MAKE) -C $@ $(TARGET)
