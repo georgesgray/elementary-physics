@@ -5,7 +5,7 @@ COMMON = ../common
 
 all paper : ${PAPERS}/${FILENAME}.pdf
 
-${PAPERS}/${FILENAME}.pdf : ${FILENAME}.tex body.tex *.png ${COMMON}/last-comment.tex ${COMMON}/elementary-physics.cls ${COMMON}/elementary-physics.bib
+${PAPERS}/${FILENAME}.pdf : ${FILENAME}.tex *.png ${COMMON}/last-comment.tex ${COMMON}/elementary-physics.cls ${COMMON}/elementary-physics.bib
 	pdflatex ${FILENAME}.tex
 	bibtex ${FILENAME}.aux
 	pdflatex ${FILENAME}.tex
@@ -13,7 +13,7 @@ ${PAPERS}/${FILENAME}.pdf : ${FILENAME}.tex body.tex *.png ${COMMON}/last-commen
 	mv -f ${FILENAME}.pdf ${PAPERS}
 
 edit :
-	gedit body.tex &
+	gedit ${FILENAME}.tex &
 
 read : paper
 	evince ${PAPERS}/${FILENAME}.pdf &
