@@ -32,7 +32,7 @@ tidy :
 	rm -f ${FILENAME}-blx.bib
 	rm -f ${FILENAME}.sagetex.*
 	rm -f sage-plots-for-${FILENAME}.tex/*
-	if [ -d "sage-plots-for-${FILENAME}.tex" ]; then rmdir "sage-plots-for-${FILENAME}.tex"; fi
+	if [ -d sage-plots-for-${FILENAME}.tex ]; then rmdir sage-plots-for-${FILENAME}.tex; fi
 	rm -f *.tex~
 
 clean : tidy
