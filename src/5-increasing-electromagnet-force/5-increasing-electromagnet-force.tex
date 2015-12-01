@@ -1,7 +1,7 @@
 \documentclass[]{../common/elementary-physics}
 
 \title{5. Increasing Electromagnet Force}
-\date{2015-11-19 v0.6}
+\date{2015-11-19 v0.7}
 
 \begin{document}
 
@@ -49,10 +49,22 @@ Plot the torque times speed to input power ratio as a function to its size and y
 Searching for a formula on this relationship we found\cite{wpele,gbet}:
 
 \begin{equation}
+F = \frac{B^2 A}{2 \, \mu_0}
+\end{equation}
+
+which can be rewritten using:
+
+\begin{equation}
+B = \frac{\mu N I}{l}
+\end{equation}
+
+where $l$ is the effective length of the magnetic flux path, as\cite{wpele}:
+
+\begin{equation}
 F = \frac{\mu^2}{2 \, \mu_0 \, g^2} \, N^2 \, I^2 \, A
 \end{equation}
 
-where $g$ is the air-gap.
+where $l$ now is $g$, the air-gap.
 Let us introduce $A_F$ to make it easier to read:
 
 \begin{equation}
@@ -65,38 +77,30 @@ and we get:
 F = A_F \, N^2 \, I^2
 \end{equation}
 
-Let us introduce a new concept; the relationship between the resistance and the number of turns in an inductor:
+Let us introduce a new concept; the relationship between the DC resistance and the number of turns in an inductor:
 
 \begin{equation}
 R = A_R \, N^2
 \end{equation}
 
-$A_R$ is the form-factor of the windings of the inductor.
+where $A_R$ is the DC resistance factor of the inductor.
 Roughly we have:
 
 \begin{equation}
 A_R = 11 \rho \, \frac{r}{d \, l}
 \end{equation}
 
-where $\rho$ is the resistivity of the material in the wire, which for copper is $16.78 \si{\nano\ohm\metre}$, $r$ is mean radius, $d$ is depth and $l$ is length.
-
 The definition of $A_R$ makes it possible to rewrite the formula:
 
 \begin{subequations}
 \begin{align}
-F &= A_F \, \frac{R}{A_R} \, I^2 \\
-F &= A_F \, \frac{P}{A_R} \\
+F &= \frac{A_F}{A_R} \, R \, I^2 \\
+F &= \frac{A_F}{A_R} \, P \\
 \frac{F}{P} &= \frac{A_F}{A_R}
 \end{align}
 \end{subequations}
 
-It seems that the $F/P$ ratio for an electromagnet is not a function of the number of turns, but apart from core-related parameters rather the amount of copper-wire; the more wire-mass, the bigger the form, the smaller the $A_R$ the stronger force per input-power.
-
-We can also say that for any electromagnet, the force is proportional to the power, when we increase the power the force increase:
-
-\begin{equation}
-F = \frac{A_F}{A_R} P
-\end{equation}
+It seems that the $F/P$ ratio for an electromagnet is not a function of the number of turns, but apart from core-related parameters rather the amount of copper-wire; the more wire-mass, the bigger the form, the smaller the $A_R$ the stronger force per input-power. We also see that the force is proportional to the power, when we increase the power the force increase.
 
 \pagebreak
 
@@ -179,7 +183,173 @@ One surprise was the power drawn by coil f which we will have to look deeper int
 
 Watch a short, hasty and inexact version of the experiment with coil a,b and e at \url{https://www.youtube.com/watch?v=IIeRR6NjMPQ}.
 
+\section{Force to Power Ratio over Time}
 
+The above theories and experiment are dealing with the steady-state of the coil where the current is steady at its maximum and can be determined from the applied DC voltage and the internal DC resistance in the coil as $I = V/R$. 
+This state is after $5 \tau$, where $\tau$ is the time-constant of the coil defined as:
+
+\begin{equation}
+\tau = \frac{L}{R} = \frac{A_L N^2}{A_R N^2} = \frac{A_L}{A_R}
+\end{equation}
+
+$\tau$, measured in seconds, is constant for a given core and form regardless of the choice of wire gauge as long as the form is equally filled with wire.
+This means that when a bigger coil is used to increase the force to power ratio, which usually means that $A_L$ increase and $A_R$ decrease, $\tau$ increase.
+
+Before $5 \tau$ the current is defined by the differential equation:
+
+\begin{equation}
+L i' + R i = V
+\end{equation}
+
+The solution to this equation is:
+
+\begin{equation}
+i(t) = \frac{V}{R} (1 - e^{- \frac{R t}{L}})
+\end{equation}
+
+\begin{sagesilent}
+(L, R, V, t, x) = var('L, R, V, t, x')
+assume(L>0)
+assume(R>0)
+assume(V>0)
+assume(t>0)
+y = function('y', t)
+ideq = L*diff(y,t) + R*y == V
+ioft = desolve(de=ideq, dvar=y, ivar=t, ics = [0,0])
+istd = ioft.substitute(L=1, R=1, V=1)
+istd_plot = plot(istd(t), t, 0, 6)
+istd_plot.axes_labels(['t', 'i(t)'])
+\end{sagesilent}
+
+We set $L = R = V = 1$ and plot $i(t)$:
+
+\sageplot[width=.75\textwidth]{istd_plot}
+
+As $t$ approach $5\tau$, in this case $\tau = L/R = 1$, $i(t)$ approaches $V$, in this case $V=1$.
+We have:
+
+\begin{subequations}
+\begin{align}
+F(t) &= \frac{A_F}{A_R} \, R \, i^2(t) \\
+P(t) &= V \, i(t)
+\end{align}
+\end{subequations}
+
+and so the force to power ratio is constant over time:
+
+\begin{equation}
+\frac{F(t)}{P(t)} = \frac{\frac{A_F}{A_R} \, R \, i^2(t)}{V \, i(t)} = \frac{A_F}{A_R}
+\end{equation}
+
+This is true as long as $g$ in $A_F$ is constant.
+If the force from the electromagnet is to be of any use it has to accelerate some mass.
+In that case $g$ change and the force to power ratio is no longer constant.
+If the mass to be accelerated is big enough the acceleration will be small enough to be discarded.
+But if the coil is part of a motor the mass is moving all the time so $g$ is constantly changing.
+One solution might be to put the rotor magnet inside the motor coil, preferably inside a motor coil that is huge as a barrel\cite{jonew}: \url{https://youtu.be/XryGfWn3ALk?t=25m10s}
+
+\section{Impulse and Energy}
+
+The formulas for impulse and energy when force and power change over time are:
+
+\begin{subequations}
+\begin{align}
+J &= \int F(t) \mathrm{d}t \\
+E &= \int P(t) \mathrm{d}t
+\end{align}
+\end{subequations}
+
+The impulse function over time:
+
+\begin{subequations}
+\begin{align}
+J(t) &= \int^t_0 F(x) \mathrm{d}x \\
+&= A_F \, N^2 \int^t_0 i^2(x) \mathrm{d}x \\
+&= \frac{A_F \, N^2 \, V^2}{R^3} \frac{2 R t - L (e^{-2 \frac{R t}{L}} - 4 e^{-\frac{R t}{L}} + 3)}{2}
+\end{align}
+\end{subequations}
+
+If we set $L = A_L N^2$, $R = A_R N^2$, $P_{max} = V^2 / R$ and  $t = \tau x$:
+
+\begin{subequations}
+\begin{align}
+J(x) &= \frac{A_F A_L V^2}{A_R N^3} \frac{4 e^{-x}-e^{-2x}+2x-3}{2} \\
+J_k(x) &= \frac{4 e^{-x}-e^{-2x}+2x-3}{2} \\
+J(x) &= \frac{A_F A_L V^2}{A_R^3 N^2} J_k(x) \\
+&= \frac{A_F A_L V^2}{A_R A_R R} J_k(x) \\
+&= \frac{A_F}{A_R} \tau P_{max} J_k(x) \\
+\end{align}
+\end{subequations}
+
+\begin{sagesilent}
+jk = (4*exp(-x)-exp(-2*x)+2*x-3)/2
+jk_plot = plot(jk, x, 0, 6)
+jk_plot.axes_labels(['x', 'Jk(x)'])
+\end{sagesilent}
+
+The energy function over time:
+
+\begin{subequations}
+\begin{align}
+E(t) &= \int^t_0 P(x) \mathrm{d}x \\
+&= V \int^t_0 i(x) \mathrm{d}x \\
+&= \frac{V^2}{R^2} (R t + L(e^{-\frac{R t}{L}} - 1))
+\end{align}
+\end{subequations}
+
+If we set $L = A_L N^2$, $R = A_R N^2$, $P_{max} = V^2 / R$ and  $t = \tau x$:
+
+\begin{subequations}
+\begin{align}
+E(x) &= \frac{A_L V^2}{A_R^2 N^2} (e^{-x}+x-1) \\
+E_k(x) &= e^{-x}+x-1 \\
+E(x) &= \frac{A_L V^2}{A_R^2 N^2} E_k(x) \\
+&= \frac{A_L V^2}{A_R R} E_k(x) \\
+&= \tau P_{max} E_k(x)
+\end{align}
+\end{subequations}
+
+\begin{sagesilent}
+ek = exp(-x)*((x-1)*exp(x) + 1)
+ek_plot = plot(ek, x, 0, 6)
+ek_plot.axes_labels(['x', 'Ek(x)'])
+comb_plot = jk_plot + ek_plot
+comb_plot.axes_labels(['x', 'Jk(x)<Ek(x)'])
+\end{sagesilent}
+
+We plot $J_k(x)$ and $E_k(x)$:
+
+\sageplot[width=.75\textwidth]{comb_plot}
+
+The asymptotes are $J_a(x) = x-3/2$ and $E_a(x) = x - 1$.\\
+\\
+The impulse to energy ratio function over time:
+
+\begin{subequations}
+\begin{align}
+JE(x) &= \frac{J(x)}{E(x)} \\
+&= \frac{\frac{A_F}{A_R} \tau P_{max} J_k(x)}{\tau P_{max} E_k(x)} \\
+&= \frac{A_F}{A_R} \frac{J_k(x)}{E_k(x)} \\
+JE_k(x) &= \frac{J_k(x)}{E_k(x)} \\
+&= \frac{4-e^{-x}+(2x-3)e^x}{2(1+(x-1)e^x)} \\
+JE(x) &= \frac{A_F}{A_R} JE_k(x)
+\end{align}
+\end{subequations}
+
+\begin{sagesilent}
+jek = (4-exp(-x)+(2*x-3)*exp(x))/(2*(1+(x-1)*exp(x)))
+jek_plot = plot(jek, x, 0, 6) + plot(1-exp(-x), x, 0, 6)
+jek_plot.axes_labels(['x', 'JEk(x)<1-e(-x)'])
+\end{sagesilent}
+
+\sageplot[width=.75\textwidth]{jek_plot}
+
+$1-e^{-x}$ is always above $JE_k(x)$.
+In fact, it is not until $x \approx 75$ that $JE_k(x)$ reach the same level as $1-e^{-x}$ was at $x = 5$, in other words $JE_k(75) \approx 1-e^{-5}$.
+
+To benefit from the use of larger coils it is important to energize the coil long enough for the effect to appear.
+If a very large coil is used in a motor the RPM must be very low.
+Once again, look at: \url{https://youtu.be/r52VWrIZui8?t=11m26s}
 
 \section{Conclusion}
 
@@ -204,9 +374,13 @@ Den generella regeln är; ju mer koppar desto större kraft.
 
 \section{$A_F$, $A_R$ and $A_L$}
 
-$A_F$ was introduced to bundle the core-related parameters together.
+$A_F$ was introduced to bundle together the parameters related to the core:
 
-$A_R$ is the form-factor of the windings of the inductor.
+\begin{equation}
+A_F = \frac{\mu^2 A}{2 \, \mu_0 \, g^2}
+\end{equation}
+
+$A_R$ is what we call the DC resistance factor and depends on the form of the windings of the inductor.
 If $W$ is the wire then we have:
 
 \begin{subequations}
@@ -230,25 +404,22 @@ A_R = 11 \rho \frac{r}{d \, l}
 \end{equation}
 
 which is what we use.
-$A_R$ is similar in its definition to $A_L$.
-
-$A_L$ is frequently specified by transformer-core manufacturers.
-The definition is and can for a multilayer air-core coil be calculated as\cite{wpind}: 
-
-\begin{subequations}
-\begin{align}
-L &= A_L \, N^2 \\
-A_L &= \frac{4}{5} \frac{r^2}{6r+9l+10d}
-\end{align}
-\end{subequations}
-
-The time-constant for a coil can now be expressed as:
+$A_R$ is similar in its definition to $A_L$, the inductance factor.
+The definition of $A_L$ is $L = A_L \, N^2$.
+$A_L$ is frequently specified by transformer-core manufacturers but can also be used for air-core coils. 
+For a transformer-core we have:
 
 \begin{equation}
-\tau_L = \frac{L}{R} = \frac{A_L N^2}{A_R N^2} = \frac{A_L}{A_R}
+A_L = \frac{\mu A}{l}
 \end{equation}
 
-and is therefore constant for a given core and form regardless of the choice of wire gauge as long as the form is equally filled with wire.
+For a multilayer air-core coil we have\cite{wpind}:
+
+\begin{equation}
+A_L = \frac{1}{31750} \frac{r^2}{6r+9l+10d}
+\end{equation}
+
+where $r$, $l$, $d$ are in $m$ and $A_L$ is in $H$,
 
 \input{../common/last-comment.tex}
 

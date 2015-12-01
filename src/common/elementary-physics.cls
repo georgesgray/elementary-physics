@@ -17,6 +17,9 @@
 \usepackage{lscape}
 \usepackage[backend=bibtex]{biblatex}
 \bibliography{../common/elementary-physics.bib}
+\usepackage{sagetex}
+
+\setlength{\sagetexindent}{10ex}
 
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 
