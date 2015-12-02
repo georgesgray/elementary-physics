@@ -95,7 +95,7 @@ The definition of $A_R$ makes it possible to rewrite the formula:
 \begin{subequations}
 \begin{align}
 F &= \frac{A_F}{A_R} \, R \, I^2 \\
-F &= \frac{A_F}{A_R} \, P \\
+&= \frac{A_F}{A_R} \, P \\
 \frac{F}{P} &= \frac{A_F}{A_R}
 \end{align}
 \end{subequations}
@@ -237,11 +237,22 @@ P(t) &= V \, i(t)
 
 and so the force to power ratio is proportional to $i(t)$:
 
-\begin{equation}
-\frac{F(t)}{P(t)} = \frac{A_F \, N^2 \, i^2(t)}{V \, i(t)} = \frac{A_F N^2}{V} \, i(t)
-\end{equation}
+\begin{subequations}
+\begin{align}
+\frac{F(t)}{P(t)} &= \frac{A_F \, N^2 \, i^2(t)}{V \, i(t)} \\
+&= \frac{A_F N^2}{V} \, i(t)
+\end{align}
+\end{subequations}
 
-and maximum force to power ratio is at $t = 5 \tau$.
+and maximum force to power ratio is at $t = 5 \tau$, after that $i(t) = V/R$:
+
+\begin{subequations}
+\begin{align}
+\frac{F(t)}{P(t)} &= \frac{A_F N^2 V}{V R} \\
+&= \frac{A_F N^2}{R} \\
+&= \frac{A_F}{A_R}
+\end{align}
+\end{subequations}
 
 We have assumed that $g$ is constant and not a function of time.
 If the force from the electromagnet is to be of any use it has to accelerate some mass.
