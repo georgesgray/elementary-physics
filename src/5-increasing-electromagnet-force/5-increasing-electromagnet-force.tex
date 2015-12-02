@@ -235,15 +235,17 @@ P(t) &= V \, i(t)
 \end{align}
 \end{subequations}
 
-and so the force to power ratio is constant over time:
+and so the force to power ratio is proportional to $i(t)$:
 
 \begin{equation}
-\frac{F(t)}{P(t)} = \frac{\frac{A_F}{A_R} \, R \, i^2(t)}{V \, i(t)} = \frac{A_F}{A_R}
+\frac{F(t)}{P(t)} = \frac{\frac{A_F}{A_R} \, R \, i^2(t)}{V \, i(t)} = \frac{A_F N^2}{V} \, i(t)
 \end{equation}
 
-This is true as long as $g$ in $A_F$ is constant.
+and maximum force to power ratio is at $t = 5 \tau$.
+
+We have assumed that $g$ is constant and not a function of time.
 If the force from the electromagnet is to be of any use it has to accelerate some mass.
-In that case $g$ change and the force to power ratio is no longer constant.
+In that case $g$ change and the force to power ratio longer follows $i(t)$.
 If the mass to be accelerated is big enough the acceleration will be small enough to be discarded.
 But if the coil is part of a motor the mass is moving all the time so $g$ is constantly changing.
 One solution might be to put the rotor magnet inside the motor coil, preferably inside a motor coil that is huge as a barrel\cite{jonew}: \url{https://youtu.be/XryGfWn3ALk?t=25m10s}
