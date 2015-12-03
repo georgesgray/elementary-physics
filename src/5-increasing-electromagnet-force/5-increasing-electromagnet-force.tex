@@ -1,7 +1,7 @@
 \documentclass[]{../common/elementary-physics}
 
 \title{5. Increasing Electromagnet Force}
-\date{2015-11-19 v0.8}
+\date{2015-11-19 v0.9}
 
 \begin{document}
 
@@ -177,9 +177,18 @@ $P m$		& $W g$			& power times mass \\
 
 \end{landscape}
 
-The pole-area of the magnets was $50 mm^2$, very well suited for coils a-e, but coil f-h has a much greater core-area than the magnets which makes comparisons between the two sets of coils difficult.
+The reading of the magnet lift, our force-measurement device, was not very exact.
 
-One surprise was the power drawn by coil f which we will have to look deeper into.
+The pole-area of the magnets was $50 mm^2$, very well suited for coils a-e in the first set, but coil f-h in the second set has a much greater core-area than the magnets pole-area which makes an exact comparison between the two sets of coils difficult. 
+The big coils in the experiment are producing a field of which most just pass the magnet by without affecting it.
+
+During the experiment the coils got warm and the resistance changed.
+
+We hoped for a smaller spread of the $N^2 I^2 A$ values within each of the two coil-sets.
+
+Coils that stick out are; d with a lower P, e with a lower P, f with a lot higher P and h with a lower P than expected.
+
+Despite the spread in the results the difference between the power used in two coil-sets is very clear; although the coil-core area A in the second set is much bigger than the pole-area of the magnets, the second set with the bigger coils need less power to produce the same magnet-lift.
 
 Watch a short, hasty and inexact version of the experiment with coil a,b and e at \url{https://www.youtube.com/watch?v=IIeRR6NjMPQ}.
 
@@ -287,10 +296,10 @@ If we set $L = A_L N^2$, $R = A_R N^2$, $P_{max} = V^2 / R$ and  $t = \tau x$:
 \begin{subequations}
 \begin{align}
 J(x) &= \frac{A_F A_L V^2}{A_R N^3} \frac{4 e^{-x}-e^{-2x}+2x-3}{2} \\
-J_k(x) &= \frac{4 e^{-x}-e^{-2x}+2x-3}{2} \\
-J(x) &= \frac{A_F A_L V^2}{A_R^3 N^2} J_k(x) \\
+&= \frac{A_F A_L V^2}{A_R^3 N^2} J_k(x) \\
 &= \frac{A_F A_L V^2}{A_R A_R R} J_k(x) \\
 &= \frac{A_F}{A_R} \tau P_{max} J_k(x) \\
+J_k(x) &= \frac{4 e^{-x}-e^{-2x}+2x-3}{2}
 \end{align}
 \end{subequations}
 
@@ -315,10 +324,10 @@ If we set $L = A_L N^2$, $R = A_R N^2$, $P_{max} = V^2 / R$ and  $t = \tau x$:
 \begin{subequations}
 \begin{align}
 E(x) &= \frac{A_L V^2}{A_R^2 N^2} (e^{-x}+x-1) \\
-E_k(x) &= e^{-x}+x-1 \\
-E(x) &= \frac{A_L V^2}{A_R^2 N^2} E_k(x) \\
+&= \frac{A_L V^2}{A_R^2 N^2} E_k(x) \\
 &= \frac{A_L V^2}{A_R R} E_k(x) \\
-&= \tau P_{max} E_k(x)
+&= \tau P_{max} E_k(x) \\
+E_k(x) &= e^{-x}+x-1
 \end{align}
 \end{subequations}
 
@@ -343,9 +352,9 @@ The impulse to energy ratio function over time:
 JE(x) &= \frac{J(x)}{E(x)} \\
 &= \frac{\frac{A_F}{A_R} \tau P_{max} J_k(x)}{\tau P_{max} E_k(x)} \\
 &= \frac{A_F}{A_R} \frac{J_k(x)}{E_k(x)} \\
+&= \frac{A_F}{A_R} JE_k(x) \\
 JE_k(x) &= \frac{J_k(x)}{E_k(x)} \\
-&= \frac{4-e^{-x}+(2x-3)e^x}{2(1+(x-1)e^x)} \\
-JE(x) &= \frac{A_F}{A_R} JE_k(x)
+&= \frac{4-e^{-x}+(2x-3)e^x}{2(1+(x-1)e^x)}
 \end{align}
 \end{subequations}
 
